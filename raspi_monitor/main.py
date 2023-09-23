@@ -21,7 +21,7 @@ def main():
     if temp > THRESHOLD:
         # Publish alert to central notify queue
         r_client = redis.Redis(host=REDIS_HOST, password=REDIS_PASS)
-        msg = f"RaspberryPi temperature is high: {temp} C"
+        msg = f"RaspberryPi temperature is high: {temp:.2f} C"
         r_client.lpush("notify.queue", msg)
         r_client.shutdown()
         print(msg)
